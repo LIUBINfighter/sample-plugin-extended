@@ -31,10 +31,6 @@ import {
   SampleReactView
 } from './Views/SampleReactView.tsx';
 import {
-  SAMPLE_SVELTE_VIEW_TYPE,
-  SampleSvelteView
-} from './Views/SampleSvelteView.ts';
-import {
   SAMPLE_VIEW_TYPE,
   SampleView
 } from './Views/SampleView.ts';
@@ -52,7 +48,6 @@ export class Plugin extends PluginBase<PluginTypes> {
     await super.onLayoutReady();
     new Notice('This is executed after all plugins are loaded');
     await this.openView(SAMPLE_VIEW_TYPE);
-    await this.openView(SAMPLE_SVELTE_VIEW_TYPE);
     await this.openView(SAMPLE_REACT_VIEW_TYPE);
   }
 
@@ -105,7 +100,6 @@ export class Plugin extends PluginBase<PluginTypes> {
     this.registerObsidianProtocolHandler('sample-action', this.handleSampleObsidianProtocolHandler.bind(this));
 
     this.registerView(SAMPLE_VIEW_TYPE, (leaf) => new SampleView(leaf));
-    this.registerView(SAMPLE_SVELTE_VIEW_TYPE, (leaf) => new SampleSvelteView(leaf));
     this.registerView(SAMPLE_REACT_VIEW_TYPE, (leaf) => new SampleReactView(leaf));
 
     this.registerModalCommands();

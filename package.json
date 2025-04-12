@@ -10,7 +10,6 @@
     "build": "obsidian-dev-utils build && node scripts/copy-to-root.js",
     "build:clean": "obsidian-dev-utils build:clean",
     "build:compile": "obsidian-dev-utils build:compile",
-    "build:compile:svelte": "obsidian-dev-utils build:compile:svelte",
     "build:compile:typescript": "obsidian-dev-utils build:compile:typescript",
     "dev": "obsidian-dev-utils dev & node scripts/copy-to-root.js --watch",
     "copy-to-root": "node scripts/copy-to-root.js",
@@ -37,7 +36,6 @@
     "obsidian-typings": "^2.42.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "svelte": "^5.25.12",
     "type-fest": "^4.39.1"
   },
   "overrides": {

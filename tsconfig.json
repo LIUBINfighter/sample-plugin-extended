@@ -20,14 +20,12 @@
     "target": "ES2024",
     "types": [
       "node",
-      "obsidian-typings",
-      "svelte"
+      "obsidian-typings"
     ],
     "verbatimModuleSyntax": true
   },
   "include": [
     "./eslint.config.*ts",
-    "./src/**/*.svelte",
     "./src/**/*.ts",
     "./src/**/*.tsx",
     "./scripts/**/*.ts"
