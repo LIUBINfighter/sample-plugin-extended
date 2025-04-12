@@ -1,4 +1,4 @@
-# Sample Plugin Extended 文档
+# Sample Plugin Extended 文档导航
 
 这个文档是 Sample Plugin Extended 插件的主要导航页面。Sample Plugin Extended 是一个基于 Obsidian API 和 React 构建的扩展示例插件，展示了 Obsidian 插件开发的各种可能性。
 
