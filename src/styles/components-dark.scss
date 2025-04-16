@@ -1,0 +1,328 @@
+/**
+ * Dark theme styles for the SampleView components
+ */
+
+.sample-view-container {
+  background-color: #121212;
+  color: #e0e0e0;
+
+  h4 {
+    color: #a0a0ff;
+    border-bottom-color: #333;
+    text-shadow: 0 0 8px rgba(160, 160, 255, 0.3);
+  }
+
+  .component-section {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .section-title {
+      color: #a0a0ff;
+
+      &::before {
+        color: #7070ff;
+      }
+    }
+
+    .section-content {
+      background-color: #252525;
+      border: 1px solid #333;
+    }
+  }
+
+  /* Button components */
+  .button-container {
+    button {
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+      &.standard-button {
+        background-color: #2a2a2a;
+        color: #e0e0e0;
+        border-color: #444;
+
+        &:hover {
+          background-color: #3a3a3a;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+      }
+
+      &.icon-button {
+        svg {
+          color: #7070ff;
+        }
+
+        &:hover svg {
+          filter: drop-shadow(0 0 3px rgba(112, 112, 255, 0.5));
+        }
+      }
+
+      &.danger-button {
+        background-color: #802020;
+        border-color: #a02020;
+
+        &:hover {
+          background-color: #a02020;
+          box-shadow: 0 4px 8px rgba(160, 32, 32, 0.4);
+        }
+      }
+
+      &.disabled-button {
+        background-color: #2a2a2a;
+        opacity: 0.4;
+      }
+
+      &.extra-button {
+        color: #888;
+        border-color: #333;
+
+        &:hover {
+          background-color: #333;
+          color: #a0a0ff;
+        }
+      }
+    }
+  }
+
+  /* File search component */
+  .file-search-container {
+    .search-input {
+      background-color: #1a1a1a;
+      border-color: #444;
+      color: #e0e0e0;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+
+      &:focus {
+        border-color: #7070ff;
+        box-shadow: 0 0 0 2px rgba(112, 112, 255, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      &::placeholder {
+        color: #666;
+      }
+    }
+
+    .search-results {
+      background-color: #1a1a1a;
+      border-color: #444;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+
+      &::-webkit-scrollbar-track {
+        background: #1a1a1a;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #444;
+      }
+
+      .search-result-item {
+        border-bottom-color: #333;
+
+        &:hover {
+          background-color: #252525;
+        }
+
+        &.selected {
+          background-color: #2a2a2a;
+          border-left-color: #7070ff;
+        }
+
+        svg {
+          color: #7070ff;
+        }
+      }
+
+      .no-results {
+        color: #777;
+      }
+    }
+  }
+
+  /* Toggle switch component */
+  .toggle-container {
+    .toggle-item {
+      background-color: #1e1e1e;
+
+      &:hover {
+        background-color: #252525;
+      }
+
+      .toggle-label {
+        color: #e0e0e0;
+      }
+
+      .toggle-switch {
+        input {
+          &:checked + .toggle-slider {
+            background-color: #6060ff;
+            box-shadow: 0 0 8px rgba(96, 96, 255, 0.6);
+          }
+        }
+
+        .toggle-slider {
+          background-color: #333;
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+
+          &:before {
+            background-color: #ddd;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+          }
+
+          &:hover:before {
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+          }
+        }
+      }
+
+      .help-icon {
+        color: #777;
+
+        &:hover {
+          color: #a0a0ff;
+          background-color: #333;
+        }
+      }
+    }
+  }
+
+  /* Slider component */
+  .slider-container {
+    .slider-item {
+      background-color: #1e1e1e;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+      .slider-label {
+        span:first-child {
+          color: #e0e0e0;
+        }
+
+        .slider-value {
+          color: #a0a0ff;
+          background-color: #2a2a2a;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+      }
+
+      .slider-input {
+        background: linear-gradient(to right, #333, #333);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+
+        &::-webkit-slider-thumb {
+          background: #6060ff;
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+          border: 2px solid #1a1a1a;
+        }
+
+        &::-moz-range-thumb {
+          background: #6060ff;
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+          border: 2px solid #1a1a1a;
+        }
+
+        &:hover::-webkit-slider-thumb {
+          box-shadow: 0 2px 8px rgba(96, 96, 255, 0.6);
+        }
+
+        &:hover::-moz-range-thumb {
+          box-shadow: 0 2px 8px rgba(96, 96, 255, 0.6);
+        }
+      }
+    }
+  }
+
+  /* File metadata component */
+  .file-metadata-container {
+    .no-file-message {
+      background-color: #1e1e1e;
+      color: #777;
+      border-color: #333;
+    }
+
+    .metadata-section {
+      background-color: #1e1e1e;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+      .metadata-title {
+        color: #a0a0ff;
+        border-bottom-color: #333;
+
+        &::before {
+          color: #7070ff;
+        }
+      }
+
+      .metadata-content {
+        background-color: #252525;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+
+        &::-webkit-scrollbar-track {
+          background: #252525;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: #444;
+        }
+
+        .metadata-item {
+          border-bottom-color: #333;
+
+          .metadata-key {
+            color: #7070ff;
+          }
+
+          .metadata-value {
+            color: #ddd;
+          }
+        }
+      }
+    }
+  }
+
+  /* Theme switcher */
+  .theme-switcher {
+    background-color: #1a1a1a;
+    border-top-color: #333;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+
+    .theme-title {
+      color: #a0a0ff;
+
+      &::after {
+        background: linear-gradient(to right, #7070ff, transparent);
+      }
+    }
+
+    .theme-buttons {
+      button {
+        background-color: #252525;
+        border-color: #444;
+        color: #e0e0e0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+        &::before {
+          background: linear-gradient(
+            to right,
+            rgba(112, 112, 255, 0) 0%,
+            rgba(112, 112, 255, 0.1) 50%,
+            rgba(112, 112, 255, 0) 100%
+          );
+        }
+
+        &:hover {
+          background-color: #333;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        &.active {
+          background-color: #6060ff;
+          color: white;
+          border-color: #6060ff;
+          box-shadow: 0 4px 12px rgba(96, 96, 255, 0.4);
+        }
+      }
+    }
+  }
+}

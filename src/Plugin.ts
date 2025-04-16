@@ -71,6 +71,12 @@ export class Plugin extends PluginBase<PluginTypes> {
       name: 'Sample command with check'
     });
 
+    this.addCommand({
+      callback: convertAsyncToSync(this.openComponentExamplesView.bind(this)),
+      id: 'open-component-examples-view',
+      name: 'Open Component Examples View'
+    });
+
     this.addRibbonIcon('dice', 'Sample ribbon icon', this.runSampleRibbonIconCommand.bind(this));
 
     this.addStatusBarItem().setText('Sample status bar item');
@@ -152,6 +158,10 @@ export class Plugin extends PluginBase<PluginTypes> {
     if (leaf) {
       await this.app.workspace.revealLeaf(leaf);
     }
+  }
+
+  private async openComponentExamplesView(): Promise<void> {
+    await this.openView(SAMPLE_VIEW_TYPE);
   }
 
   private registerModalCommands(): void {
