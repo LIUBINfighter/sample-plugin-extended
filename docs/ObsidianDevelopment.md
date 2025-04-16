@@ -9,7 +9,8 @@
 主要功能：
 
 - 自动将构建后的文件从 `./dist/dev` 复制到 Obsidian 插件目录
-- 支持从 `.env` 文件读取目标目录配置
+- **自动检测** Obsidian 插件目录位置，无需手动配置
+- 支持从 `.env` 文件读取目标目录配置（可选）
 - 支持监视模式，当文件变化时自动复制
 - 只复制必要的文件（main.js, styles.css, manifest.json），排除热重载相关文件
 - 自动创建目标目录（如果不存在）
@@ -74,7 +75,7 @@
 
 ### 配置选项
 
-如需修改脚本的行为，可以编辑 `scripts/copy-to-obsidian.js` 文件或修改 `.env` 文件：
+脚本现在可以**自动检测** Obsidian 插件目录，大多数情况下无需手动配置。如果你仍需要自定义脚本的行为，可以编辑 `scripts/copy-to-obsidian.js` 文件或修改 `.env` 文件：
 
 1. **修改要复制的文件**：
 
@@ -87,20 +88,26 @@
    ];
    ```
 
-2. **修改目标目录**：
-   有两种方式可以修改目标目录：
+2. **手动指定目标目录**（可选）：
+   如果自动检测不符合你的需求，可以手动指定目标目录：
 
-   a. 修改 `.env` 文件（推荐）：
+   a. 创建或修改 `.env` 文件：
 
    ```env
    OBSIDIAN_CONFIG_FOLDER=D:\Path\To\Obsidian\plugins\sample-plugin-extended\
    ```
 
-   b. 直接在脚本中修改默认路径：
+   脚本会优先使用 `.env` 文件中的路径，如果文件存在的话。
 
-   ```javascript
-   const obsidianConfigFolder = process.env.OBSIDIAN_CONFIG_FOLDER || path.join('D:', 'CustomPath', 'Obsidian', 'plugins', 'sample-plugin-extended');
-   ```
+3. **自动检测的工作原理**：
+
+   脚本会根据不同的操作系统在常见位置查找 Obsidian 的安装目录：
+
+   - Windows: 检查所有驱动器上的常见位置
+   - macOS: 检查 Library/Application Support 和用户目录
+   - Linux: 检查用户目录和 .config 目录
+
+   如果找到多个 Obsidian 仓库，脚本会选择第一个发现的仓库。
 
 ## 故障排除
 
@@ -110,12 +117,17 @@
    - 确保已运行构建命令，生成了 `./dist/dev` 目录
    - 检查当前工作目录是否为项目根目录
 
-2. **无法创建目标目录**：
+2. **无法自动检测 Obsidian 插件目录**：
+   - 检查 Obsidian 是否已安装并创建了仓库
+   - 尝试手动创建 `.env` 文件并指定 `OBSIDIAN_CONFIG_FOLDER` 路径
+   - 如果使用非标准位置安装了 Obsidian，可能需要手动指定路径
+
+3. **无法创建目标目录**：
    - 检查您是否有足够的权限创建目录
    - 确保父目录路径存在
    - 检查 Obsidian 是否已关闭（有时 Obsidian 会锁定插件目录）
 
-3. **文件复制失败**：
+4. **文件复制失败**：
    - 检查文件是否被其他程序锁定
    - 确保目标目录有写入权限
    - 检查磁盘空间是否充足

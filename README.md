@@ -26,13 +26,9 @@ This plugin includes a tool to automatically copy build files to the Obsidian pl
 
 #### Configuration
 
-1. Set up the destination path in the `.env` file:
+The tool now **automatically detects** your Obsidian plugins directory, so in most cases no manual configuration is needed!
 
-   ```env
-   OBSIDIAN_CONFIG_FOLDER=D:\Path\To\Obsidian\plugins\sample-plugin-extended\
-   ```
-
-2. Use one of the following npm commands:
+1. Simply use one of the following npm commands:
 
    ```bash
    # Standard development mode (copies to both root and Obsidian plugins directory)
@@ -58,13 +54,9 @@ For more details, see [Obsidian Development Documentation](docs/ObsidianDevelopm
 
 #### 配置方法
 
-1. 在 `.env` 文件中设置目标路径：
+该工具现在可以**自动检测**您的 Obsidian 插件目录，大多数情况下无需手动配置！
 
-   ```env
-   OBSIDIAN_CONFIG_FOLDER=D:\Path\To\Obsidian\plugins\sample-plugin-extended\
-   ```
-
-2. 使用以下 npm 命令之一：
+1. 直接使用以下 npm 命令之一：
 
    ```bash
    # 标准开发模式（同时复制到根目录和 Obsidian 插件目录）
@@ -81,4 +73,3 @@ For more details, see [Obsidian Development Documentation](docs/ObsidianDevelopm
    ```
 
 更多详情，请参阅 [Obsidian 开发文档](docs/ObsidianDevelopment.md)。
-
