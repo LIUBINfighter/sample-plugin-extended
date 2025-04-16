@@ -73,6 +73,12 @@ export class ViewStyleManager {
       return false;
     }
 
+    // Get the container element for this view
+    const viewContainer = this.getViewContainer(viewType);
+    if (!viewContainer) {
+      console.warn(`Could not find container for view ${viewType}`);
+    }
+
     // Disable the current style if it exists
     if (currentStyle) {
       const currentStyleKey = `${viewType}-${currentStyle}`;
@@ -80,13 +86,55 @@ export class ViewStyleManager {
       if (currentStyleEl) {
         currentStyleEl.disabled = true;
       }
+
+      // Remove the current style class from the container
+      if (viewContainer) {
+        const currentStyleClass = this.styleClasses.get(currentStyleKey);
+        if (currentStyleClass) {
+          viewContainer.classList.remove(currentStyleClass);
+        }
+      }
     }
 
     // Enable the new style
     newStyleEl.disabled = false;
     this.activeStyles.set(viewType, styleName);
 
+    // Add the new style class to the container
+    if (viewContainer) {
+      const newStyleClass = this.styleClasses.get(newStyleKey);
+      if (newStyleClass) {
+        viewContainer.classList.add(newStyleClass);
+      }
+    }
+
     return true;
+  }
+
+  /**
+   * Gets the container element for a view
+   * @param viewType The view type identifier
+   * @returns The container element, or null if not found
+   */
+  private getViewContainer(viewType: string): HTMLElement | null {
+    // First try to find the view container by class
+    const container = document.querySelector(`.${viewType}`);
+    if (container instanceof HTMLElement) {
+      return container;
+    }
+
+    // If not found, try to find it by data attribute
+    const viewEl = document.querySelector(`[data-type="${viewType}"]`);
+    if (viewEl instanceof HTMLElement) {
+      // The container is usually the first child with class 'view-content'
+      const content = viewEl.querySelector('.view-content');
+      if (content instanceof HTMLElement) {
+        return content;
+      }
+      return viewEl;
+    }
+
+    return null;
   }
 
   /**

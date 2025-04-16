@@ -2,7 +2,8 @@
  * Base component styles for the SampleView
  */
 
-.sample-view-container {
+/* 基础样式适用于所有主题 */
+.SamplePluginExtended-SampleView .sample-view-container {
   padding: 20px;
   max-width: 100%;
   overflow-x: hidden;

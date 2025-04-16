@@ -22,11 +22,13 @@ export class SampleView extends ItemView {
   }
 
   public override async onOpen(): Promise<void> {
-    // Load the different CSS styles for this view
-    this.loadStyles();
-
     // Create the main container
     this.contentEl.empty();
+
+    // Add the view type class to the content element for CSS targeting
+    this.contentEl.classList.add(SAMPLE_VIEW_TYPE);
+
+    // Create the container with the sample-view-container class
     this.container = this.contentEl.createDiv({ cls: 'sample-view-container' });
 
     // Create the header
@@ -41,6 +43,10 @@ export class SampleView extends ItemView {
 
     // Create theme switcher
     this.createThemeSwitcher();
+
+    // Load the different CSS styles for this view
+    // Do this after creating the UI to ensure the container exists
+    this.loadStyles();
 
     await Promise.resolve();
   }
@@ -459,24 +465,30 @@ export class SampleView extends ItemView {
     // Get available themes
     const themes = ['default', 'dark', 'colorful'];
 
+    // Get current active theme
+    const activeTheme = viewStyleManager.getActiveStyle(SAMPLE_VIEW_TYPE) || 'default';
+
     // Create a button for each theme
     themes.forEach(theme => {
       const button = themeButtons.createEl('button', {
         text: theme.charAt(0).toUpperCase() + theme.slice(1),
-        cls: viewStyleManager.getActiveStyle(SAMPLE_VIEW_TYPE) === theme ? 'active' : ''
+        cls: activeTheme === theme ? 'active' : ''
       });
 
       button.addEventListener('click', () => {
         // Apply the theme
-        viewStyleManager.applyStyle(SAMPLE_VIEW_TYPE, theme);
+        const success = viewStyleManager.applyStyle(SAMPLE_VIEW_TYPE, theme);
 
-        // Update active button
-        themeButtons.querySelectorAll('button').forEach(btn => {
-          btn.classList.remove('active');
-        });
-        button.classList.add('active');
+        if (success) {
+          // Update active button
+          themeButtons.querySelectorAll('button').forEach(btn => {
+            btn.classList.remove('active');
+          });
+          button.classList.add('active');
 
-        new Notice(`Applied ${theme} theme to components`);
+          new Notice(`Applied ${theme} theme to components`);
+          console.log(`Theme switched to: ${theme}`);
+        }
       });
     });
   }

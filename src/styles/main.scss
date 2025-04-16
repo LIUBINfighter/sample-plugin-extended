@@ -4,8 +4,15 @@
  * See available library css classes: https://github.com/mnaoumov/obsidian-dev-utils/blob/main/src/CssClass.ts
  */
 
-/* Import component styles */
+/* Import all component styles */
 @import "components.scss";
+@import "components-dark.scss";
+@import "components-colorful.scss";
+
+/* 默认主题样式类 */
+.SamplePluginExtended-SampleView.SamplePluginExtended-SampleView-style-default {
+  /* 默认主题不需要额外的样式，因为它使用基础样式 */
+}
 
 .sample-plugin-extended.obsidian-dev-utils {
   /* Override library styles */
